@@ -219,11 +219,11 @@ static float roi_to_effective(float r,int time,int time_type){
     return pow((1+r),n)-1;
 }
 
-static bool root_errcheck(x0,x1,y){
+static bool root_errcheck(float x0,float x1,float y){
     //求根算法逼近时候的阈值，当代入根后，函数值小于此值则算法结束
     //此收敛阈值的确定方法待探讨
     float err=0.5;
-    printf("check:%d\n",(absto(y>=err)&&roundto(absto(x0-x1),4)>0));
+
     return (absto(y>=err)&&roundto(absto(x0-x1),4)>0);
 }
 
@@ -296,7 +296,7 @@ static float root_bisec(float* k,float* n,float x0,float x1,int l){
     //2.端点之间距离较远，有变化；
     do{
         //x=root_bisec_nxtroot(x0,x1);
-        x=root_liinter_nxtroot(k,n,x0,x1,l);
+        x=root_liinter_nxtroot(x0,x1,y0,y1);
         printf("new root:%f\n",x);
         y=func_polyno(k,n,x,l);
         printf("new err:%f\n",y);
