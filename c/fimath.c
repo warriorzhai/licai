@@ -3,47 +3,47 @@
 #define ROUND_DIGIT 4
 
 
-//¶¨Òåµ¥Î»Äê°üº¬Ê±¼ä£º
-//Ìì£¬Ò»Äê365Ìì
-//ÔÂ£¬Ò»Äê12ÔÂ
+//å®šä¹‰å•ä½å¹´åŒ…å«æ—¶é—´ï¼š
+//å¤©ï¼Œä¸€å¹´365å¤©
+//æœˆï¼Œä¸€å¹´12æœˆ
 int time_table[]={365,12};
-//==================ÊýÑ§¼ÆËã===========================
+//==================æ•°å­¦è®¡ç®—===========================
 
-//¹¹ÔìÒ»¸öÒ»Ôªn´Îº¯Êý£¬¼ÆËãº¯Êý½á¹û
+//æž„é€ ä¸€ä¸ªä¸€å…ƒnæ¬¡å‡½æ•°ï¼Œè®¡ç®—å‡½æ•°ç»“æžœ
 
-//Àý×Ó£º
-//º¯Êý=2*x+3*x^4+90
-//ÏµÊý£¬k=[2,3,90]
-//ÃÝ£¬n=[1,4,0]
+//ä¾‹å­ï¼š
+//å‡½æ•°=2*x+3*x^4+90
+//ç³»æ•°ï¼Œk=[2,3,90]
+//å¹‚ï¼Œn=[1,4,0]
 //l=length(n)=3
-//Çóx=1µÄº¯ÊýÖµ
+//æ±‚x=1çš„å‡½æ•°å€¼
 //func_polyno(k,n,1,3)-->95
 
-//²ÎÊýËµÃ÷
-//k:¸¡µãÊý×é£¬º¯ÊýµÄÏµÊý
-//n:¸¡µãÊý×é£¬º¯ÊýµÄÃÝ
-//x£º±äÁ¿µÄÖµ
-//l£ºÕûÊý£¬Êý×éµÄ³¤¶È£¬Ö®ËùÒÔÐèÒªÕâ¸ö²ÎÊýÊÇÒòÎªcÊý×é²»·½±ã»ñÈ¡³¤¶È£¬Ö»ºÃ¼ÇÂ¼ÏÂÀ´
+//å‚æ•°è¯´æ˜Ž
+//k:æµ®ç‚¹æ•°ç»„ï¼Œå‡½æ•°çš„ç³»æ•°
+//n:æµ®ç‚¹æ•°ç»„ï¼Œå‡½æ•°çš„å¹‚
+//xï¼šå˜é‡çš„å€¼
+//lï¼šæ•´æ•°ï¼Œæ•°ç»„çš„é•¿åº¦ï¼Œä¹‹æ‰€ä»¥éœ€è¦è¿™ä¸ªå‚æ•°æ˜¯å› ä¸ºcæ•°ç»„ä¸æ–¹ä¾¿èŽ·å–é•¿åº¦ï¼Œåªå¥½è®°å½•ä¸‹æ¥
 
-//·µ»Ø£º
-//º¯Êý¼ÆËã½á¹û£¬¸¡µã
+//è¿”å›žï¼š
+//å‡½æ•°è®¡ç®—ç»“æžœï¼Œæµ®ç‚¹
 float func_polyno(float* k,float* n,float x,int l){
 
     float res=0;
-    //Ñ­»·ÁÙÊ±¼ÆÊýÆ÷,³õÊ¼ÖµÎª-1¶ø²»ÊÇ0ÊÇºÍÏÂÎÄÖÐwhileµÄÐ´·¨ÓÐ¹Ø
+    //å¾ªçŽ¯ä¸´æ—¶è®¡æ•°å™¨,åˆå§‹å€¼ä¸º-1è€Œä¸æ˜¯0æ˜¯å’Œä¸‹æ–‡ä¸­whileçš„å†™æ³•æœ‰å…³
     int i=-1;
 
-    //¼ÆËãÒ»Ôªn´Îº¯Êý
+    //è®¡ç®—ä¸€å…ƒnæ¬¡å‡½æ•°
     while(++i<l){
         res+=k[i]*pow(x,n[i]);
     }
 
-    //½«¼ÆËã½á¹û£¬°´ÕÕÎ»ÊýËÄÉáÎåÈë
+    //å°†è®¡ç®—ç»“æžœï¼ŒæŒ‰ç…§ä½æ•°å››èˆäº”å…¥
     return roundto(res,ROUND_DIGIT);
 }
 
 
-//¸ø³öÁ½µã(x0,y0),(x1£¬y1)·µ»ØÁ½µã¼äÖ±Ïßº¯Êý£¨kx+b£©µÄk¡¢b
+//ç»™å‡ºä¸¤ç‚¹(x0,y0),(x1ï¼Œy1)è¿”å›žä¸¤ç‚¹é—´ç›´çº¿å‡½æ•°ï¼ˆkx+bï¼‰çš„kã€b
 float* func_line(float x0,float x1,float y0,float y1){
     static float line_para[2]={0};
     if(x1!=x0)
@@ -54,66 +54,66 @@ float* func_line(float x0,float x1,float y0,float y1){
 
 //=====================================================
 
-//==================Í¶×Ê¼ÆËã===========================
+//==================æŠ•èµ„è®¡ç®—===========================
 
 
-//¸ù¾ÝÆÚÀûÂÊ£¬¼ÆËãnominated rate
-//¹«Ê½£ºr*n
+//æ ¹æ®æœŸåˆ©çŽ‡ï¼Œè®¡ç®—nominated rate
+//å…¬å¼ï¼šr*n
 
-//Àý×Ó£º
-//Ã¿ÔÂÀûÂÊÎªr£¬ÇónominatedÀûÂÊ
+//ä¾‹å­ï¼š
+//æ¯æœˆåˆ©çŽ‡ä¸ºrï¼Œæ±‚nominatedåˆ©çŽ‡
 //roi_to_nominate(r,1,1)
-//Ã¿ÌìÀûÂÊÎªr£¬ÇónominatedÀûÂÊ
+//æ¯å¤©åˆ©çŽ‡ä¸ºrï¼Œæ±‚nominatedåˆ©çŽ‡
 //roi_to_nominate(r,1,0)
-//Ã¿ÆÚ90ÌìµÄÆ±¾ÝÆÚÀûÂÊÎªr£¬ÇónominatedÀûÂÊ£¨ÕâÖÖÇé¿ö¿ÉÒÔÊ¹ÓÃµ«ÊÇ²»³£ÓÃ£©
+//æ¯æœŸ90å¤©çš„ç¥¨æ®æœŸåˆ©çŽ‡ä¸ºrï¼Œæ±‚nominatedåˆ©çŽ‡ï¼ˆè¿™ç§æƒ…å†µå¯ä»¥ä½¿ç”¨ä½†æ˜¯ä¸å¸¸ç”¨ï¼‰
 //roi_to_nominate(r,90,0)
 
-//²ÎÊýËµÃ÷
-//r:Ã¿ÆÚÀûÂÊ£¬ÆÚÎª¼¸Ìì¼¸¸öÔÂ
-//time£ºÕýÕûÊý£¬Ã¿ÆÚÖÐ°üº¬¼¸Ìì/ÔÂ
-//time_type£ºÕýÕûÊý£¬0-Ìì£¬1-ÔÂ£¬ÕâÀï²»°üÀ¨ÄêÒòÎªnominated rate¾ÍÊÇÄêÀûÂÊÁË
+//å‚æ•°è¯´æ˜Ž
+//r:æ¯æœŸåˆ©çŽ‡ï¼ŒæœŸä¸ºå‡ å¤©å‡ ä¸ªæœˆ
+//timeï¼šæ­£æ•´æ•°ï¼Œæ¯æœŸä¸­åŒ…å«å‡ å¤©/æœˆ
+//time_typeï¼šæ­£æ•´æ•°ï¼Œ0-å¤©ï¼Œ1-æœˆï¼Œè¿™é‡Œä¸åŒ…æ‹¬å¹´å› ä¸ºnominated rateå°±æ˜¯å¹´åˆ©çŽ‡äº†
 
-//·µ»Ø£º
-//ÀûÂÊ£¬¸¡µã
+//è¿”å›žï¼š
+//åˆ©çŽ‡ï¼Œæµ®ç‚¹
 float roi_to_nominate(float r,int time,int time_type){
-    //ÇóÒ»ÄêÖÐ°üº¬¶àÉÙÆÚ£¬½á¹ûÏòÏÂÈ¡Õû
+    //æ±‚ä¸€å¹´ä¸­åŒ…å«å¤šå°‘æœŸï¼Œç»“æžœå‘ä¸‹å–æ•´
     int n=floor(time_table[time_type]/time);
     return n*r;
 }
 
-//¸ù¾ÝÆÚÀûÂÊ£¬¼ÆËãeffective rate
-//¹«Ê½£º(1+r)^n
+//æ ¹æ®æœŸåˆ©çŽ‡ï¼Œè®¡ç®—effective rate
+//å…¬å¼ï¼š(1+r)^n
 
-//Àý×Ó£º
-//Ã¿ÔÂÀûÂÊÎªr£¬ÇónominatedÀûÂÊ
+//ä¾‹å­ï¼š
+//æ¯æœˆåˆ©çŽ‡ä¸ºrï¼Œæ±‚nominatedåˆ©çŽ‡
 //roi_to_effective(r,1,1)
-//Ã¿ÌìÀûÂÊÎªr£¬ÇónominatedÀûÂÊ
+//æ¯å¤©åˆ©çŽ‡ä¸ºrï¼Œæ±‚nominatedåˆ©çŽ‡
 //roi_to_effective(r,1,0)
-//Ã¿ÆÚ90ÌìµÄÆ±¾ÝÆÚÀûÂÊÎªr£¬ÇónominatedÀûÂÊ£¨ÕâÖÖÇé¿ö¿ÉÒÔÊ¹ÓÃµ«ÊÇ²»³£ÓÃ£©
+//æ¯æœŸ90å¤©çš„ç¥¨æ®æœŸåˆ©çŽ‡ä¸ºrï¼Œæ±‚nominatedåˆ©çŽ‡ï¼ˆè¿™ç§æƒ…å†µå¯ä»¥ä½¿ç”¨ä½†æ˜¯ä¸å¸¸ç”¨ï¼‰
 //roi_to_effective(r,90,0)
 
-//²ÎÊýËµÃ÷
-//r:Ã¿ÆÚÀûÂÊ£¬ÆÚÎª¼¸Ìì¼¸¸öÔÂ
-//time£ºÕýÕûÊý£¬Ã¿ÆÚÖÐ°üº¬¼¸Ìì/ÔÂ
-//time_type£ºÕýÕûÊý£¬0-Ìì£¬1-ÔÂ£¬ÕâÀï²»°üÀ¨ÄêÒòÎªnominated rate¾ÍÊÇÄêÀûÂÊÁË
+//å‚æ•°è¯´æ˜Ž
+//r:æ¯æœŸåˆ©çŽ‡ï¼ŒæœŸä¸ºå‡ å¤©å‡ ä¸ªæœˆ
+//timeï¼šæ­£æ•´æ•°ï¼Œæ¯æœŸä¸­åŒ…å«å‡ å¤©/æœˆ
+//time_typeï¼šæ­£æ•´æ•°ï¼Œ0-å¤©ï¼Œ1-æœˆï¼Œè¿™é‡Œä¸åŒ…æ‹¬å¹´å› ä¸ºnominated rateå°±æ˜¯å¹´åˆ©çŽ‡äº†
 
-//·µ»Ø£º
-//ÀûÂÊ£¬¸¡µã
+//è¿”å›žï¼š
+//åˆ©çŽ‡ï¼Œæµ®ç‚¹
 float roi_to_effective(float r,int time,int time_type){
     if(time<=0){
-        printf("µ¥Î»Í¶×ÊÊ±¼ä²»ÄÜÐ¡ÓÚµÈÓÚ0\n");
+        printf("å•ä½æŠ•èµ„æ—¶é—´ä¸èƒ½å°äºŽç­‰äºŽ0\n");
         return '0';
     }
     int n=floor(time_table[time_type]/time);
-    printf("type£º%d\n",time_table[time_type]);
-    printf("time£º%d",time);
-    printf("ÄêÍ¶×ÊÆÚÊý£º%d",n);
+    printf("typeï¼š%d\n",time_table[time_type]);
+    printf("timeï¼š%d",time);
+    printf("å¹´æŠ•èµ„æœŸæ•°ï¼š%d",n);
     return pow((1+r),n)-1;
 }
 
 static bool root_errcheck(float y){
-    //Çó¸ùËã·¨±Æ½üÊ±ºòµÄãÐÖµ£¬µ±´úÈë¸ùºó£¬º¯ÊýÖµÐ¡ÓÚ´ËÖµÔòËã·¨½áÊø
-    //´ËÊÕÁ²ãÐÖµµÄÈ·¶¨·½·¨´ýÌ½ÌÖ
+    //æ±‚æ ¹ç®—æ³•é€¼è¿‘æ—¶å€™çš„é˜ˆå€¼ï¼Œå½“ä»£å…¥æ ¹åŽï¼Œå‡½æ•°å€¼å°äºŽæ­¤å€¼åˆ™ç®—æ³•ç»“æŸ
+    //æ­¤æ”¶æ•›é˜ˆå€¼çš„ç¡®å®šæ–¹æ³•å¾…æŽ¢è®¨
     float err=0.001;
     return absto(y)>=err;
 }
@@ -130,7 +130,7 @@ static float root_liinter_nxtroot(float x0,float x1,float y0,float y1){
         if(line_para[0]==0)
             return 0;
         else{
-            printf("kÎª0¡¢Ö±Ïß²»¹ýxÖá£¬ÎÞ½â");
+            printf("kä¸º0ã€ç›´çº¿ä¸è¿‡xè½´ï¼Œæ— è§£");
             return '0';}
         }
 
@@ -141,33 +141,12 @@ static float root_liinter_nxtroot(float x0,float x1,float y0,float y1){
     }
 }
 
-//Ê¹ÓÃBisection methodÇó½âÒ»Ôªn´Î·½³ÌµÄÒ»¸ö¸ù
-//Ëã·¨¸ÅÊö£º
-//¸ø¶¨Ò»Ôªn´Î·½³Ì£¬·½³ÌÁ¬Ðø£»
-//¸ø¶¨³õÊ¼Á½µãx0,x1£¬ÆäÖÐf(x0),f(x1)ÒìºÅ£»
-//È¡x0,x1µÄÖÐµãx2£¬Çó½âf(x2)£¬f(x2)ÊÇ·ñ×ã¹»½Ó½üÓÚ0£»
-//Èç¹ûÊÇ£¬Ëã·¨½áÊø£¬x2ÎªËùÇó¸ù£¬Èô²»ÊÇ£¬ÔòÖØ¸´ÇóÖÐµã¡£
+//ä½¿ç”¨Secant methodæ±‚è§£ä¸€å…ƒnæ¬¡æ–¹ç¨‹çš„ä¸€ä¸ªæ ¹
 
-//¼ÆËãÓëxÖáÏàÇÐµÄº¯Êý»áÓÐÎÊÌâ
-
-//Àý×Ó£º
-//Çóx^5+4*x+9=0µÄ¸ù
-//k={1,4,9},n={5,1,0},l=3
-//ÒÑÖªx·¶Î§ÔÚ0~1Ö®¼ä£¬x0=0,x1=1
-//root_bisec(k,n,x0,x1,l)
-
-//²ÎÊýËµÃ÷
-//k:¸¡µãÊý×é£¬º¯ÊýµÄÏµÊý
-//n:¸¡µãÊý×é£¬º¯ÊýµÄÃÝ
-//x0,x1£º¸ùµÄ³õÊ¼Öµ£¬¸¡µã
-//l£ºÕûÊý£¬Êý×éµÄ³¤¶È£¬Ö®ËùÒÔÐèÒªÕâ¸ö²ÎÊýÊÇÒòÎªcÊý×é²»·½±ã»ñÈ¡³¤¶È£¬Ö»ºÃ¼ÇÂ¼ÏÂÀ´
-
-//·µ»Ø£º
-//¸ù£¬¸¡µã
 float root_secant(float* k,float* n,float x0,int l){
     float sigma=0.0001;
     float x1=x0+sigma;
-    //¼ÆËã³õÊ¼Á½¸öµãµÄº¯ÊýÖµ
+    //è®¡ç®—åˆå§‹ä¸¤ä¸ªç‚¹çš„å‡½æ•°å€¼
     float y0=func_polyno(k,n,x0,l);
     printf("init y0:%f\n",y0);
     float y1=func_polyno(k,n,x1,l);
@@ -179,12 +158,7 @@ float root_secant(float* k,float* n,float x0,int l){
     if(!root_errcheck(y1))
         return x1;
 
-    //µ±ÖÐµã´¦(x0+x1)/2Âú×ãÌõ¼þcl£¬Ôò£º
-    //ÖÐµãÓëºÍËûÒìºÅµÄ¶Ïµã¹¹³ÉÐÂµÄx0£¬x1¶Ëµã£»
-    //ÇóÏÂÒ»¸öÖÐµã¡£
-    //Ìõ¼þcl£º
-    //1.ÖÐµã´¦º¯ÊýÖµ´óÓÚµÈÓÚãÐÖµ£»
-    //2.¶ËµãÖ®¼ä¾àÀë½ÏÔ¶£¬ÓÐ±ä»¯£»
+
     do{
         //x=root_bisec_nxtroot(x0,x1);
         x=x1-y1*(x1-x0)/(y1-y0+sigma);
@@ -203,15 +177,37 @@ float root_secant(float* k,float* n,float x0,int l){
     return x;
 }
 
+//ä½¿ç”¨Bisection methodæ±‚è§£ä¸€å…ƒnæ¬¡æ–¹ç¨‹çš„ä¸€ä¸ªæ ¹
+//ç®—æ³•æ¦‚è¿°ï¼š
+//ç»™å®šä¸€å…ƒnæ¬¡æ–¹ç¨‹ï¼Œæ–¹ç¨‹è¿žç»­ï¼›
+//ç»™å®šåˆå§‹ä¸¤ç‚¹x0,x1ï¼Œå…¶ä¸­f(x0),f(x1)å¼‚å·ï¼›
+//å–x0,x1çš„ä¸­ç‚¹x2ï¼Œæ±‚è§£f(x2)ï¼Œf(x2)æ˜¯å¦è¶³å¤ŸæŽ¥è¿‘äºŽ0ï¼›
+//å¦‚æžœæ˜¯ï¼Œç®—æ³•ç»“æŸï¼Œx2ä¸ºæ‰€æ±‚æ ¹ï¼Œè‹¥ä¸æ˜¯ï¼Œåˆ™é‡å¤æ±‚ä¸­ç‚¹ã€‚
 
+//è®¡ç®—ä¸Žxè½´ç›¸åˆ‡çš„å‡½æ•°ä¼šæœ‰é—®é¢˜
+
+//ä¾‹å­ï¼š
+//æ±‚x^5+4*x+9=0çš„æ ¹
+//k={1,4,9},n={5,1,0},l=3
+//å·²çŸ¥xèŒƒå›´åœ¨0~1ä¹‹é—´ï¼Œx0=0,x1=1
+//root_bisec(k,n,x0,x1,l)
+
+//å‚æ•°è¯´æ˜Ž
+//k:æµ®ç‚¹æ•°ç»„ï¼Œå‡½æ•°çš„ç³»æ•°
+//n:æµ®ç‚¹æ•°ç»„ï¼Œå‡½æ•°çš„å¹‚
+//x0,x1ï¼šæ ¹çš„åˆå§‹å€¼ï¼Œæµ®ç‚¹
+//lï¼šæ•´æ•°ï¼Œæ•°ç»„çš„é•¿åº¦ï¼Œä¹‹æ‰€ä»¥éœ€è¦è¿™ä¸ªå‚æ•°æ˜¯å› ä¸ºcæ•°ç»„ä¸æ–¹ä¾¿èŽ·å–é•¿åº¦ï¼Œåªå¥½è®°å½•ä¸‹æ¥
+
+//è¿”å›žï¼š
+//æ ¹ï¼Œæµ®ç‚¹
 float root_bisec(float* k,float* n,float x0,float x1,int l){
-    //¼ÆËã³õÊ¼Á½¸öµãµÄº¯ÊýÖµ
+    //è®¡ç®—åˆå§‹ä¸¤ä¸ªç‚¹çš„å‡½æ•°å€¼
     float y0=func_polyno(k,n,x0,l);
     float y1=func_polyno(k,n,x1,l);
     float y,x;
 
 
-    //ÊÇ·ñÂú×ãÌõ¼þ£º³õÊ¼Á½¸öµãº¯ÊýÖµÒìºÅ
+    //æ˜¯å¦æ»¡è¶³æ¡ä»¶ï¼šåˆå§‹ä¸¤ä¸ªç‚¹å‡½æ•°å€¼å¼‚å·
     if(y0*y1>0){
         return '0';
     }
@@ -221,12 +217,12 @@ float root_bisec(float* k,float* n,float x0,float x1,int l){
     if(!root_errcheck(y1))
         return x1;
 
-    //µ±ÖÐµã´¦(x0+x1)/2Âú×ãÌõ¼þcl£¬Ôò£º
-    //ÖÐµãÓëºÍËûÒìºÅµÄ¶Ïµã¹¹³ÉÐÂµÄx0£¬x1¶Ëµã£»
-    //ÇóÏÂÒ»¸öÖÐµã¡£
-    //Ìõ¼þcl£º
-    //1.ÖÐµã´¦º¯ÊýÖµ´óÓÚµÈÓÚãÐÖµ£»
-    //2.¶ËµãÖ®¼ä¾àÀë½ÏÔ¶£¬ÓÐ±ä»¯£»
+    //å½“ä¸­ç‚¹å¤„(x0+x1)/2æ»¡è¶³æ¡ä»¶clï¼Œåˆ™ï¼š
+    //ä¸­ç‚¹ä¸Žå’Œä»–å¼‚å·çš„æ–­ç‚¹æž„æˆæ–°çš„x0ï¼Œx1ç«¯ç‚¹ï¼›
+    //æ±‚ä¸‹ä¸€ä¸ªä¸­ç‚¹ã€‚
+    //æ¡ä»¶clï¼š
+    //1.ä¸­ç‚¹å¤„å‡½æ•°å€¼å¤§äºŽç­‰äºŽé˜ˆå€¼ï¼›
+    //2.ï¼ˆå·²åˆ é™¤ï¼‰ç«¯ç‚¹ä¹‹é—´è·ç¦»è¾ƒè¿œï¼Œæœ‰å˜åŒ–ï¼›
     do{
         //x=root_bisec_nxtroot(x0,x1);
         x=root_liinter_nxtroot(x0,x1,y0,y1);
